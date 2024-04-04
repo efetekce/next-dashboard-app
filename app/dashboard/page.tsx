@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "./Navbar";
@@ -18,34 +16,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import TaskCard from "./TaskCard";
+import KanbanBoard from "./KanbanBoard";
+import { Board } from "@/lib/types";
 
 export default function DashboardPage() {
-  const [boards, setBoards] = useState([]);
-
-  useEffect(() => {
-    const getBoards = async () => {
-      try {
-        const bearerToken = localStorage.getItem("token");
-        const response = await fetch(
-          "https://api.management.parse25proje.link/api/boards",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${bearerToken}`,
-            },
-          }
-        );
-        console.log(response);
-        const userBoards = await response.json();
-        console.log(userBoards.data);
-        setBoards(userBoards.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getBoards();
-  }, []);
   return (
     <div className="flex min-h-screen flex-col">
       {/* page */}
@@ -79,8 +53,8 @@ export default function DashboardPage() {
             <div>Other</div>
           </div>
           {/* board area */}
-          <div className="grid h-5/6 grid-cols-4 items-center justify-center gap-4">
-            {/* <div className="flex h-3/4 cursor-pointer flex-col items-center justify-center space-y-4 rounded-xl bg-white text-2xl text-slate-400">
+          {/* <div className="grid h-5/6 grid-cols-4 items-center justify-center gap-4"> */}
+          {/* <div className="flex h-3/4 cursor-pointer flex-col items-center justify-center space-y-4 rounded-xl bg-white text-2xl text-slate-400">
               <div className="text-slate-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -99,26 +73,8 @@ export default function DashboardPage() {
               <p>Add Board</p>
             </div> */}
 
-            {boards.map((board) => (
-              <Card>
-                <CardHeader className="border-b-2">
-                  <CardTitle>{board.title}</CardTitle>
-                  <CardDescription>Card Description</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4 p-4">
-                  <DndContext collisionDetection={closestCorners}>
-                    {/* {board.tasks.map(() => (
-                      <TaskCard key={task.id} task={task} />
-                    ))} */}
-                    {/* <TaskCard />
-                    <TaskCard />
-                    <TaskCard />
-                    <TaskCard /> */}
-                  </DndContext>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <KanbanBoard />
+          {/* </div> */}
         </div>
       </div>
     </div>
