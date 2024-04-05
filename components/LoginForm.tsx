@@ -58,7 +58,7 @@ const LoginForm = () => {
 
       if (loginResponse.status) {
         const token = loginResponse.data.token;
-        console.log(token);
+        // console.log(token);
         localStorage.setItem("token", token);
         // console.log(localStorage.getItem("token"));
         setTimeout(() => router.push("/dashboard"), 2000);
@@ -74,7 +74,7 @@ const LoginForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 m-auto flex flex-col container xl:w-1/3  border-2 border-slate-400 rounded-xl lg:p-24 p-12"
+        className="container m-auto flex flex-col space-y-8 rounded-xl border-2 border-slate-400 p-12 lg:p-24 xl:w-1/3"
       >
         <FormField
           control={form.control}

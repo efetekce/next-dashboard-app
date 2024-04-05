@@ -115,7 +115,9 @@ const KanbanBoard = () => {
         onDragEnd={onDragEnd}
         sensors={sensors}
       >
-        <ScrollContainer mouseScroll={{ ignoreElements: "input,header" }}>
+        <ScrollContainer
+          mouseScroll={{ ignoreElements: "input,header" }}
+        >
           <div className="m-auto flex gap-4">
             <div className="flex gap-4">
               <SortableContext items={boardsId}>

@@ -60,9 +60,9 @@ const ColumnContainer = ({
       <div
         ref={setNodeRef}
         style={style}
-        className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md border-2 bg-teal-400 opacity-60"
+        className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md border-2 bg-white opacity-60"
       >
-        dragging
+        
       </div>
     );
   }
@@ -71,12 +71,12 @@ const ColumnContainer = ({
     <div
       ref={setNodeRef}
       style={style}
-      className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md bg-teal-400"
+      className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md bg-white"
     >
       <header
         {...attributes}
         {...listeners}
-        className="text-md flex h-[60px] cursor-grab items-center justify-between rounded-md rounded-b-none border-4 bg-teal-200 p-3 font-bold"
+        className="text-md flex h-[60px] cursor-alias items-center justify-between rounded-lg rounded-b-none border-4 p-3 font-bold"
         onClick={() => setEditMode(true)}
       >
         <div className="flex gap-2">
