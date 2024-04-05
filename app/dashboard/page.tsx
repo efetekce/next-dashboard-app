@@ -27,7 +27,7 @@ export default function DashboardPage() {
       <Navbar />
 
       {/* all containing div */}
-      <div className="grid flex-grow grid-cols-5 gap-0 bg-red-300">
+      <div className="grid flex-grow grid-cols-5 gap-0">
         {/* left bars */}
         <div className="col-span-1 flex flex-grow">
           {/* menu bar */}

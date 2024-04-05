@@ -20,7 +20,7 @@ const ColumnContainer = ({
     return Math.floor(Math.random() * 10001);
   };
   const [tasks, setTasks] = useState<Task[]>(board.tasks ?? []);
-  console.log(tasks);
+  //   console.log(tasks);
   const createTask = (boardId: number) => {
     const newTask: Task = {
       id: generateId(),
@@ -61,9 +61,7 @@ const ColumnContainer = ({
         ref={setNodeRef}
         style={style}
         className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md border-2 bg-white opacity-60"
-      >
-        
-      </div>
+      ></div>
     );
   }
 
@@ -71,12 +69,12 @@ const ColumnContainer = ({
     <div
       ref={setNodeRef}
       style={style}
-      className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md bg-white"
+      className="flex h-[500px] max-h-[500px] w-[350px] shadow-lg flex-col rounded-md bg-white"
     >
       <header
         {...attributes}
         {...listeners}
-        className="text-md flex h-[60px] cursor-alias items-center justify-between rounded-lg rounded-b-none border-4 p-3 font-bold"
+        className="text-md flex h-[60px] cursor-alias items-center justify-between rounded-lg rounded-b-none ring-2  ring-slate-200 p-3 font-bold"
         onClick={() => setEditMode(true)}
       >
         <div className="flex gap-2">
@@ -85,7 +83,7 @@ const ColumnContainer = ({
             <input
               value={board.name}
               onChange={(e) => updateBoard(board.id, e.target.value)}
-              className="border-rose-400 bg-red-300 px-2 outline-none"
+              className="border-rose-400 border-2 bg-slate-200 opacity-60 px-2 outline-none"
               autoFocus
               onBlur={() => setEditMode(false)}
               onKeyDown={(e) => {
@@ -100,7 +98,7 @@ const ColumnContainer = ({
           </div>
         </div>
         <button
-          className="rounded stroke-gray-500 px-1 py-2 hover:bg-black hover:stroke-white"
+          className="rounded stroke-gray-500 px-1 py-2 hover:bg-slate-200 hover:stroke-white"
           onClick={() => deleteBoard(board.id)}
         >
           <DeleteIcon />
@@ -117,7 +115,7 @@ const ColumnContainer = ({
         ))}
       </div>
       <button
-        className="hover: flex items-center gap-2 rounded-md border-2 border-red-200 p-4"
+        className="flex items-center gap-2 rounded-md border-2 rounded-t-0 border-slate-200 p-4"
         onClick={() => createTask(board.id)}
       >
         Add New Task

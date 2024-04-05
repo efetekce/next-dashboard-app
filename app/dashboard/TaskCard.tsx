@@ -14,19 +14,17 @@ const TaskCard = ({ task, deleteTask }: TaskCardProps) => {
     <div
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
-      className="relative flex h-[200px] min-h-[200px] cursor-grab flex-col items-center rounded-xl bg-white p-2 text-center hover:ring-2 hover:ring-inset hover:ring-slate-400"
+      className="relative flex h-[200px] min-h-[200px] cursor-grab flex-col justify-center  rounded-xl border-2 bg-white p-4 text-center shadow-lg hover:ring-2 hover:ring-inset hover:ring-slate-400"
     >
       <h3 className="font-semibold">{task.name}</h3>
-      <div className="flex items-start justify-center">
-        <p>
-         {task.description}
-        </p>
+      <div className="flex items-start justify-between">
+        <p>{task.description}</p>
         <img src="/pfp.png" className="h-10 w-10 rounded-full" />
       </div>
       <div className="flex items-center space-x-2 stroke-slate-400">
         <CalendarIcon />
 
-        <span>{task.startDate}</span>
+        <span>{new Date(task.startDate).toLocaleDateString()}</span>
       </div>
       <span>{task.name}</span>
       {isMouseOver && (
