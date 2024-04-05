@@ -1,3 +1,4 @@
+"use client";
 import PlusIcon from "@/components/PlusIcon";
 import { Board, Id, Task } from "@/lib/types";
 
