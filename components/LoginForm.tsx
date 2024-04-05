@@ -89,7 +89,7 @@ const LoginForm = () => {
                 Make sure to enter the e-mail address that you
                 registered with.
               </FormDescription>
-              <FormMessage>{2 * 2}</FormMessage>
+              <FormMessage>{}</FormMessage>
             </FormItem>
           )}
         />
@@ -109,7 +109,7 @@ const LoginForm = () => {
               <FormDescription>
                 Your super secret password :-)
               </FormDescription>
-              <FormMessage>{1 + 1}</FormMessage>
+              <FormMessage>{}</FormMessage>
             </FormItem>
           )}
         />
