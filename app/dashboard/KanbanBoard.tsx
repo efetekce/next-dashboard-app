@@ -3,7 +3,7 @@ import PlusIcon from "@/components/PlusIcon";
 import { Board, Id, Task } from "@/lib/types";
 
 import ColumnContainer from "./ColumnContainer";
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import {
   DndContext,
   DragEndEvent,
@@ -141,18 +141,20 @@ const KanbanBoard = () => {
             </button>
           </div>
         </ScrollContainer>
-        {createPortal(
-          <DragOverlay>
-            {activeBoard && (
-              <ColumnContainer
-                board={activeBoard}
-                deleteBoard={deleteBoard}
-                updateBoard={updateBoard}
-              />
-            )}
-          </DragOverlay>,
-          document.body
-        )}
+        <Fragment>
+          {createPortal(
+            <DragOverlay>
+              {activeBoard && (
+                <ColumnContainer
+                  board={activeBoard}
+                  deleteBoard={deleteBoard}
+                  updateBoard={updateBoard}
+                />
+              )}
+            </DragOverlay>,
+            document.body
+          )}
+        </Fragment>
       </DndContext>
     </div>
   );
