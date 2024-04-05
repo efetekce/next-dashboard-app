@@ -19,6 +19,7 @@ import TaskCard from "./TaskCard";
 import KanbanBoard from "./KanbanBoard";
 import { Board } from "@/lib/types";
 
+
 export default function DashboardPage() {
   return (
     <div className="flex min-h-screen flex-col">
@@ -73,7 +74,9 @@ export default function DashboardPage() {
               <p>Add Board</p>
             </div> */}
 
-          <KanbanBoard />
+         
+            <KanbanBoard />
+          
           {/* </div> */}
         </div>
       </div>

@@ -7,24 +7,24 @@ export interface Board {
   createdAt?: string;
   updatedAt?: string;
   deletedAt?: any;
-  tasks?: Task[];
+  tasks?: Task[] | [];
 }
 
 export interface Task {
   id: number;
-  createdUserId: number;
+  createdUserId?: number;
   name: string;
-  description: any;
-  code: number;
-  boardId: number;
-  flagId: number;
-  order: number;
-  startDate: any;
-  endDate: any;
-  createdAt: string;
-  updatedAt: string;
-  deletedAt: any;
-  deletedUserId: any;
+  description?: any;
+  code?: number;
+  boardId?: number;
+  flagId?: number;
+  order?: number;
+  startDate?: any;
+  endDate?: any;
+  createdAt?: string;
+  updatedAt?: string;
+  deletedAt?: any;
+  deletedUserId?: any;
 }
 
 export type Column = {

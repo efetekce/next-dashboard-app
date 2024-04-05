@@ -1,52 +1,43 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import CalendarIcon from "@/components/CalendarIcon";
+import DeleteTaskIcon from "@/components/DeleteTaskIcon";
+import { Task } from "@/lib/types";
+import { useState } from "react";
 
-const TaskCard = () => {
+interface TaskCardProps {
+  task: Task;
+  deleteTask: (id: number) => void;
+}
+
+const TaskCard = ({ task, deleteTask }: TaskCardProps) => {
+  const [isMouseOver, setMouseOver] = useState(false);
   return (
-    <Card>
-      {/* <CardHeader className="">
-        <CardTitle className="text-lg font-semibold">Operasyon Birimi</CardTitle>
-        <CardDescription>Card Description</CardDescription>
-      </CardHeader> */}
-      <CardContent className="space-y-4 p-4">
-        <h3 className="font-semibold">Operasyon Birimi</h3>
-        <div className="flex items-start justify-center">
-          <p>
-            Bu örnek görevdir. Örnek görevin içeriğine dair açıklama
-            detail’da bulunmaktadır.
-          </p>
-          <img src="/pfp.png" className="h-10 w-10 rounded-full" />
-        </div>
-        <div className="flex items-center space-x-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1em"
-            height="1em"
-            viewBox="0 0 24 24"
-          >
-            <g
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-            >
-              <path d="M8 2v4m8-4v4" />
-              <rect width="18" height="18" x="3" y="4" rx="2" />
-              <path d="M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" />
-            </g>
-          </svg>
+    <div
+      onMouseEnter={() => setMouseOver(true)}
+      onMouseLeave={() => setMouseOver(false)}
+      className="relative flex h-[200px] min-h-[200px] cursor-grab flex-col items-center rounded-xl bg-white p-2 text-center hover:ring-2 hover:ring-inset hover:ring-slate-400"
+    >
+      <h3 className="font-semibold">{task.name}</h3>
+      <div className="flex items-start justify-center">
+        <p>
+         {task.description}
+        </p>
+        <img src="/pfp.png" className="h-10 w-10 rounded-full" />
+      </div>
+      <div className="flex items-center space-x-2 stroke-slate-400">
+        <CalendarIcon />
 
-          <span>tarih</span>
-        </div>
-        <span>milestone name</span>
-      </CardContent>
-    </Card>
+        <span>{task.startDate}</span>
+      </div>
+      <span>{task.name}</span>
+      {isMouseOver && (
+        <button
+          className="absolute right-1 top-1 rounded stroke-black p-2 opacity-60 hover:opacity-100"
+          onClick={() => deleteTask(task.id)}
+        >
+          <DeleteTaskIcon />
+        </button>
+      )}
+    </div>
   );
 };
 export default TaskCard;
