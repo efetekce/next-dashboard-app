@@ -141,8 +141,9 @@ const KanbanBoard = () => {
             </button>
           </div>
         </ScrollContainer>
-        <Fragment>
-          {createPortal(
+
+        {typeof document !== "undefined" &&
+          createPortal(
             <DragOverlay>
               {activeBoard && (
                 <ColumnContainer
@@ -154,7 +155,6 @@ const KanbanBoard = () => {
             </DragOverlay>,
             document.body
           )}
-        </Fragment>
       </DndContext>
     </div>
   );
