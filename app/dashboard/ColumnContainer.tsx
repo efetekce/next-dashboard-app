@@ -10,17 +10,16 @@ interface Props {
   board: Board;
   deleteBoard: (id: Id) => void;
   updateBoard: (id: number, name: string) => void;
+  tasks?: Task[];
 }
-const ColumnContainer = ({
-  board,
-  deleteBoard,
-  updateBoard,
-}: Props) => {
+const ColumnContainer = ({ board, deleteBoard, updateBoard }: Props) => {
   const generateId = () => {
     return Math.floor(Math.random() * 10001);
   };
   const [tasks, setTasks] = useState<Task[]>(board.tasks ?? []);
   //   console.log(tasks);
+
+  // CRUD OPERATIONS FOR TASKS
   const createTask = (boardId: number) => {
     const newTask: Task = {
       id: generateId(),
@@ -32,6 +31,13 @@ const ColumnContainer = ({
   const deleteTask = (id: number) => {
     const newTasks = tasks?.filter((task) => task.id !== id);
     setTasks(newTasks);
+  };
+  const updateTask = (id: number, description: string) => {
+    const newTask = tasks.map((task) => {
+      if (task.id !== id) return task;
+      return { ...task, description };
+    });
+    setTasks(newTask);
   };
   const [editMode, setEditMode] = useState(false);
   const {
@@ -60,7 +66,7 @@ const ColumnContainer = ({
       <div
         ref={setNodeRef}
         style={style}
-        className="flex h-[500px] max-h-[500px] w-[350px] flex-col rounded-md border-2 bg-white opacity-60"
+        className="flex flex-col border-2 bg-white opacity-60 rounded-md w-[350px] h-[500px] max-h-[500px]"
       ></div>
     );
   }
@@ -69,12 +75,12 @@ const ColumnContainer = ({
     <div
       ref={setNodeRef}
       style={style}
-      className="flex h-[500px] max-h-[500px] w-[350px] shadow-lg flex-col rounded-md bg-white"
+      className="flex flex-col bg-white shadow-lg rounded-md w-[350px] h-[500px] max-h-[500px]"
     >
       <header
         {...attributes}
         {...listeners}
-        className="text-md flex h-[60px] cursor-alias items-center justify-between rounded-lg rounded-b-none ring-2  ring-slate-200 p-3 font-bold"
+        className="flex justify-between items-center bg-blue-700 p-3 rounded-b-none rounded-lg h-[60px] font-bold text-md cursor-alias ring-2 ring-slate-200"
         onClick={() => setEditMode(true)}
       >
         <div className="flex gap-2">
@@ -83,7 +89,7 @@ const ColumnContainer = ({
             <input
               value={board.name}
               onChange={(e) => updateBoard(board.id, e.target.value)}
-              className="border-rose-400 border-2 bg-slate-200 opacity-60 px-2 outline-none"
+              className="border-2 bg-slate-200 opacity-60 px-2 border-rose-400 outline-none"
               autoFocus
               onBlur={() => setEditMode(false)}
               onKeyDown={(e) => {
@@ -93,29 +99,29 @@ const ColumnContainer = ({
             />
           )}
 
-          <div className="flex items-center rounded-full px-2 py-1 text-sm">
+          <div className="flex items-center px-2 py-1 rounded-full text-sm">
             {tasks?.length}
           </div>
         </div>
         <button
-          className="rounded stroke-gray-500 px-1 py-2 hover:bg-slate-200 hover:stroke-white"
+          className="hover:bg-slate-200 px-1 py-2 rounded stroke-gray-500 hover:stroke-white"
           onClick={() => deleteBoard(board.id)}
         >
           <DeleteIcon />
         </button>
       </header>
-      <div className="flex flex-grow flex-col gap-4 overflow-y-auto overflow-x-hidden p-2">
+      <div className="flex flex-col flex-grow gap-4 p-2 overflow-x-hidden overflow-y-auto">
         {tasks?.map((task) => (
           <TaskCard
             key={task.id}
             task={task}
             deleteTask={deleteTask}
+            updateTask={updateTask}
           />
-          //   <div key={task.id}>{task.name}</div>
         ))}
       </div>
       <button
-        className="flex items-center gap-2 rounded-md border-2 rounded-t-0 border-slate-200 p-4"
+        className="flex items-center gap-2 border-2 border-slate-200 p-4 rounded-md rounded-t-0"
         onClick={() => createTask(board.id)}
       >
         Add New Task

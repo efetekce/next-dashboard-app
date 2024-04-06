@@ -98,28 +98,22 @@ const KanbanBoard = () => {
     if (activeBoardId === overBoardId) return;
 
     setBoards((boards) => {
-      const activeBoardIndex = boards.findIndex(
-        (b) => b.id === activeBoardId
-      );
-      const overBoardIndex = boards.findIndex(
-        (b) => b.id === overBoardId
-      );
+      const activeBoardIndex = boards.findIndex((b) => b.id === activeBoardId);
+      const overBoardIndex = boards.findIndex((b) => b.id === overBoardId);
       return arrayMove(boards, activeBoardIndex, overBoardIndex);
     });
   };
   /////////////////////////////////////////////////
 
   return (
-    <div className="m-auto flex min-h-screen w-full items-center overflow-x-auto overflow-y-hidden px-[40px]">
+    <div className="flex items-center m-auto px-[40px] w-full min-h-screen overflow-x-auto overflow-y-hidden">
       <DndContext
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
         sensors={sensors}
       >
-        <ScrollContainer
-          mouseScroll={{ ignoreElements: "input,header" }}
-        >
-          <div className="m-auto flex gap-4">
+        <ScrollContainer mouseScroll={{ ignoreElements: "input,header" }}>
+          <div className="flex gap-4 m-auto">
             <div className="flex gap-4">
               <SortableContext items={boardsId}>
                 {boards.map((board) => (
@@ -133,7 +127,7 @@ const KanbanBoard = () => {
               </SortableContext>
             </div>
             <button
-              className="flex h-[60px] w-[350px] min-w-[350px] cursor-pointer gap-2 rounded-lg border-2 bg-slate-400 p-4 ring-rose-400 hover:ring-2"
+              className="flex gap-2 border-2 bg-slate-400 p-4 rounded-lg w-[350px] min-w-[350px] h-[60px] cursor-pointer ring-rose-400 hover:ring-2"
               onClick={createNewBoard}
             >
               Add New Project

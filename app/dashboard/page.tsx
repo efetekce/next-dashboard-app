@@ -19,7 +19,6 @@ import TaskCard from "./TaskCard";
 import KanbanBoard from "./KanbanBoard";
 import { Board } from "@/lib/types";
 
-
 export default function DashboardPage() {
   return (
     <div className="flex min-h-screen flex-col">
@@ -40,11 +39,9 @@ export default function DashboardPage() {
         {/* main area */}
 
         <div className="container col-span-4 mx-auto w-full overflow-x-scroll bg-indigo-100 p-8">
-          <h1 className="text-3xl font-bold text-[#145389]">
-            Frontend Case
-          </h1>
+          <h1 className="text-3xl font-bold text-[#145389]">Frontend Case</h1>
           {/* menubar */}
-          <div className="menubar flex w-fit items-center justify-start rounded-lg border border-slate-500 font-bold text-[#145389]">
+          <div className="menubar flex w-fit items-center justify-start rounded-lg border border-slate-500 font-bold text-[#145389] ajsdksadjasfkaskfkasfkaskfa">
             <div>Boards</div>
             <div>List</div>
             <div>Other</div>
@@ -74,9 +71,8 @@ export default function DashboardPage() {
               <p>Add Board</p>
             </div> */}
 
-         
-            <KanbanBoard />
-          
+          <KanbanBoard />
+
           {/* </div> */}
         </div>
       </div>
