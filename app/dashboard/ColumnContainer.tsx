@@ -33,11 +33,11 @@ const ColumnContainer = ({ board, deleteBoard, updateBoard }: Props) => {
     setTasks(newTasks);
   };
   const updateTask = (id: number, description: string) => {
-    const newTask = tasks.map((task) => {
+    const newTasks = tasks.map((task) => {
       if (task.id !== id) return task;
       return { ...task, description };
     });
-    setTasks(newTask);
+    setTasks(newTasks);
   };
   const [editMode, setEditMode] = useState(false);
   const {
